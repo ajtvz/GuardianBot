@@ -1,186 +1,93 @@
-GuardianBot is a lightweight, modular system‑monitoring agent designed to collect machine metrics and send them to a central AI‑powered incident assistant.
-The goal is to build a real SRE‑style monitoring agent with:
+GuardianBot – PC Performance & AI‑Powered Game Optimization
+GuardianBot is a lightweight system monitoring agent built for gamers who want real insight into how their PC performs while they play. It tracks essential hardware metrics in real time — CPU, memory, disk, network, and system information — and pairs them with AI‑driven anomaly detection to help identify issues that might be causing lag, stutters, high latency, or unexpected performance drops.
 
-Clean, scalable architecture
+The goal is simple:
+Give gamers a clear view of what their PC is doing and help them fix problems before they ruin the experience.
 
-Modular metric collectors
+GuardianBot collects metrics locally and sends them to a backend service for analysis. The long‑term vision is a full dashboard where players can view performance history, get AI explanations for unusual behavior, and receive practical suggestions to improve gameplay smoothness and system stability.
 
-A simple agent loop
+Features (Current)
+Real‑time metric collection
 
-JSON payload output
+CPU usage
 
-Future cloud deployment (Docker → Kubernetes → Terraform)
+Memory usage
 
-AI‑assisted analysis and alerting
-
-This project is intentionally built step‑by‑step, with full awareness of every decision.
-
-📂 Project Structure
-Code
-guardianbot/
-│
-├── agent/
-│   ├── __init__.py
-│   ├── main.py                # Agent entry point (to be created)
-│   ├── metrics/
-│   │   ├── __init__.py
-│   │   ├── cpu.py             # CPU metric collector (completed)
-│   │   ├── memory.py          # Memory collector (planned)
-│   │   ├── disk.py            # Disk collector (planned)
-│   │   ├── network.py         # Network collector (planned)
-│   │   └── system.py          # System info collector (planned)
-│   ├── utils/
-│   │   ├── __init__.py
-│   │   ├── logger.py          # Logging utilities (planned)
-│   │   └── helpers.py         # Shared helper functions (planned)
-│   └── config.py              # Configuration settings (planned)
-│
-├── tests/
-│   ├── test_cpu.py            # Unit tests (planned)
-│   ├── test_memory.py
-│   └── ...
-│
-├── requirements.txt
-└── README.md
-This structure mirrors real monitoring agents (Datadog, New Relic, Prometheus exporters).
-
-🧩 Current Implementation
-✔ CPU Metric Collector
-File: agent/metrics/cpu.py
-
-python
-from psutil import cpu_percent
-
-def collect_cpu():
-    return cpu_percent(interval=1)
-Uses psutil.cpu_percent(interval=1)
-
-Returns a float
-
-Designed to plug directly into the agent’s JSON payload
-
-This is the template for all future metric collectors.
-
-🔄 Agent Loop (Planned)
-The agent will:
-
-Collect metrics from each module
-
-Assemble them into a JSON payload
-
-Print or send the payload
-
-Sleep for 2 seconds
-
-Repeat
-
-This logic will live in main.py.
-
-📊 Metrics to Implement Next
-Each metric will follow the same pattern as CPU:
-
-Memory
-RAM usage
-
-Swap usage
-
-Disk
 Disk usage
 
-Disk I/O
+Network throughput
 
-Network
-Upload / download bytes
+System information (OS, hostname, boot time, core count)
 
-Network I/O
+Persistent device ID
 
-System
-Hostname
+Timestamped payloads
 
-Uptime
+Clean, modular Python architecture
 
-OS info
+Project Roadmap
+Phase 1 — Core Agent (Completed)
+[x] Build agent structure
 
-Each will be implemented in its own file under agent/metrics/.
+[x] Add CPU, memory, disk, network, and system metrics
 
-🧠 Design Philosophy
-GuardianBot is built with:
+[x] Add timestamps
 
-Modularity
-Each metric lives in its own file.
-Easy to test, easy to extend.
+[x] Add persistent device ID
 
-Simplicity
-Each collector returns a single value or dictionary.
-No unnecessary complexity.
+[x] Prepare payload format for backend ingestion
 
-Scalability
-The architecture is ready for:
+Phase 2 — Backend API (In Progress)
+[ ] FastAPI backend
 
-Docker
+[ ] /ingest endpoint for receiving metrics
 
-Kubernetes
+[ ] Pydantic validation
 
-Terraform
+[ ] PostgreSQL database setup
 
-Remote ingestion endpoints
+[ ] Store device + metric records
 
-AI‑Friendliness
-All metrics will be assembled into a clean JSON payload for analysis.
+[ ] Basic authentication for agents
 
-🚀 Roadmap
-Phase 1 — Local Agent (Current Phase)
-[x] CPU metric
+Phase 3 — AI Analysis
+[ ] Anomaly detection (Isolation Forest / PyOD)
 
-[ ] Memory metric
+[ ] AI explanations for performance spikes
 
-[ ] Disk metric
+[ ] Suggestions for fixing latency, stutters, and bottlenecks
 
-[ ] Network metric
+Phase 4 — Dashboard
+[ ] Web UI for real‑time metrics
 
-[ ] System info metric
+[ ] Historical charts
 
-[ ] JSON payload builder
+[ ] Device overview page
 
-[ ] Agent loop
+[ ] AI insights panel
 
-[ ] Logging utilities
+[ ] User accounts & login
 
-[ ] Config file
+Phase 5 — Quality of Life
+[ ] Windows + Linux installers
 
-Phase 2 — Local Docker Deployment
-Dockerfile
+[ ] Auto‑update system
 
-docker‑compose.yml
+[ ] Run agent as a background service
 
-Local testing
+[ ] Config file support
 
-Phase 3 — Cloud Deployment
-Kubernetes manifests
+[ ] Logging & error reporting
 
-Terraform provisioning
+Who This Is For
+GuardianBot is built for:
 
-Remote ingestion endpoint
+Gamers who want to understand why their FPS drops
 
-Phase 4 — AI Incident Assistant
-LLM‑powered analysis
+Players dealing with random lag spikes or high latency
 
-Alerting
+Anyone who wants a simple way to monitor PC health
 
-Recommendations
+People who want AI‑powered explanations instead of digging through logs
 
-Automated incident summaries
-
-🧭 Current Status
-You have completed:
-
-The CPU metric collector
-
-The architectural direction
-
-The project structure plan
-
-The development roadmap
-
-Next step:
-Create the full folder + file skeleton so we can start filling in the remaining metric collectors.
+Developers interested in system monitoring, backend design, and anomaly detection
