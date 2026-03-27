@@ -4,7 +4,7 @@ def start ():
     start_time = time.time()
     while True:
         if time.time() - start_time >= 30:  # Run for 30 seconds
-            print("Collecting metrics...")
+            print("Done")
             break
         metrics = collect_all_metrics()
         payload = {
